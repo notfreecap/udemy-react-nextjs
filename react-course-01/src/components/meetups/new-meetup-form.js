@@ -16,8 +16,7 @@ function NewMeetupForm(props) {
       address: addressInputRef.current.value,
       description: descriptionInputRef.current.value,
     };
-
-    console.log(meetup);
+    props.onAddMeetup(meetup);
   }
 
   return (
