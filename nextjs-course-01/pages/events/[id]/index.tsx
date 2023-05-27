@@ -1,6 +1,7 @@
 import EventContent from "@/components/event-detail/event-content";
 import EventLogistics from "@/components/event-detail/event-logistics";
 import EventSummary from "@/components/event-detail/event-summary";
+import ErrorAlert from "@/components/events/error-alert";
 import { getEventById } from "@/dummy-data";
 import { NextRouter, withRouter } from "next/router";
 import React, { Fragment } from "react";
@@ -16,7 +17,11 @@ class EventDetailPage extends React.Component<EventDetailPageProps> {
     const event = getEventById(eventId);
 
     if (!event) {
-      return <p>No event found!</p>;
+      return (
+        <ErrorAlert>
+          <p>No event found!</p>
+        </ErrorAlert>
+      );
     }
 
     return (
