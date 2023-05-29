@@ -1,0 +1,14 @@
+{
+  "sales": [
+    {
+      "id": 1,
+      "username": "Max",
+      "valume": 100
+    },
+    {
+      "id": 2,
+      "username": "Manuel",
+      "valume": 15
+    }
+  ]
+}

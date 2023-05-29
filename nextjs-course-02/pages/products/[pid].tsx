@@ -25,12 +25,8 @@ class ProductDetailPage extends React.Component<
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: [
-      { params: { pid: "p1" } },
-      { params: { pid: "p2" } },
-      { params: { pid: "p3" } },
-    ],
-    fallback: false,
+    paths: [{ params: { pid: "p1" } }],
+    fallback: "blocking", // wait for a response if the path is not pre generated
   };
 };
 
