@@ -3,12 +3,12 @@
     {
       "id": 1,
       "username": "Max",
-      "valume": 100
+      "volume": 100
     },
     {
       "id": 2,
       "username": "Manuel",
-      "valume": 15
+      "volume": 15
     }
   ]
 }
