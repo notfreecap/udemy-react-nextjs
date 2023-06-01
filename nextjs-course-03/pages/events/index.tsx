@@ -1,30 +1,39 @@
 import EventList from "@/components/events/event-list";
 import EventSearch from "@/components/events/event-search";
-import { getAllEvents } from "@/dummy-data";
-import { withRouter } from "next/router";
-import { Component, Fragment } from "react";
+import { Event } from "@/interfaces/event.interface";
+import { useRouter } from "next/router";
+import { GetStaticProps } from "next/types";
+import { Fragment } from "react";
+import { API_URL } from "..";
 
-interface AllEventsPageProps {
-  router: any;
+interface Props {
+  events: Event[];
 }
 
-interface AllEventsPageState {}
-
-class AllEventsPage extends Component<AllEventsPageProps, AllEventsPageState> {
-  private events = getAllEvents();
-
-  findEventsHandler = ({ year, month }: any) => {
-    this.props.router.push(`/events/${year}/${month}`);
+const AllEventsPage = (props: Props) => {
+  const router = useRouter();
+  const findEventsHandler = ({ year, month }: any) => {
+    router.push(`/events/${year}/${month}`);
   };
 
-  render() {
-    return (
-      <Fragment>
-        <EventSearch onSearch={this.findEventsHandler} />
-        <EventList events={this.events} />
-      </Fragment>
-    );
-  }
-}
+  return (
+    <Fragment>
+      <EventSearch onSearch={findEventsHandler} />
+      <EventList events={props.events} />
+    </Fragment>
+  );
+};
 
-export default withRouter(AllEventsPage);
+export default AllEventsPage;
+
+export const getStaticProps: GetStaticProps = async () => {
+  const response = await fetch(API_URL);
+  const events = await response.json();
+
+  return {
+    props: {
+      events,
+    },
+    revalidate: 60,
+  };
+};
